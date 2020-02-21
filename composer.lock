@@ -1,32 +1,32 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "hash": "7bbce02dba132bd92167320cb757d451",
-    "content-hash": "6ef5bf9c0d931872b064da1f8f92c026",
+    "content-hash": "f1914fb320dcb4296d4c80c049297794",
     "packages": [
         {
             "name": "openbuildings/environment-backup",
-            "version": "0.1.1",
+            "version": "0.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/OpenBuildings/environment-backup.git",
-                "reference": "382d388ec2a9d9c414965a20347671328ab0b1f2"
+                "reference": "db94e7c77fa9d35b48a5e40218d335f1891d805e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/OpenBuildings/environment-backup/zipball/382d388ec2a9d9c414965a20347671328ab0b1f2",
-                "reference": "382d388ec2a9d9c414965a20347671328ab0b1f2",
+                "url": "https://api.github.com/repos/OpenBuildings/environment-backup/zipball/db94e7c77fa9d35b48a5e40218d335f1891d805e",
+                "reference": "db94e7c77fa9d35b48a5e40218d335f1891d805e",
                 "shasum": ""
             },
             "require-dev": {
-                "openbuildings/kohana-test-bootsrap": "dev-master"
+                "openbuildings/kohana-test-bootstrap": "^0.2",
+                "phpunit/phpunit": "^4.0, <4.5"
             },
             "type": "library",
             "autoload": {
-                "psr-0": {
+                "psr-4": {
                     "Openbuildings\\EnvironmentBackup\\": "src/"
                 }
             },
@@ -38,16 +38,15 @@
                 {
                     "name": "Ivan Kerin",
                     "email": "ivan@openbuildings.com",
-                    "homepage": "https://github.com/OpenBuildings/jam",
                     "role": "Author"
                 }
             ],
             "description": "Backup/restore environment variables: globals, static vars, configs",
-            "time": "2013-07-24 07:26:52"
+            "time": "2016-10-01T12:08:40+00:00"
         },
         {
             "name": "symfony/css-selector",
-            "version": "v3.0.8",
+            "version": "v3.0.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/css-selector.git",
@@ -96,7 +95,7 @@
             ],
             "description": "Symfony CssSelector Component",
             "homepage": "https://symfony.com",
-            "time": "2016-06-29 05:40:00"
+            "time": "2016-06-29T05:40:00+00:00"
         }
     ],
     "packages-dev": [
@@ -133,7 +132,7 @@
                 }
             ],
             "description": "Kohana core classes repackaged with composer, used to test modules",
-            "time": "2013-10-01 08:57:54"
+            "time": "2013-10-01T08:57:54+00:00"
         },
         {
             "name": "se/selenium-server-standalone",
@@ -170,7 +169,7 @@
                 "selenium",
                 "testing"
             ],
-            "time": "2014-03-13 13:17:49"
+            "time": "2014-03-13T13:17:49+00:00"
         }
     ],
     "aliases": [],

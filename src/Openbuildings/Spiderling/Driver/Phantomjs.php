@@ -263,7 +263,7 @@ class Driver_Phantomjs extends Driver {
 	 * @param  string $uri
 	 * @param  array  $query
 	 */
-	public function visit($uri, array $query = NULL)
+	public function visit($uri, array $query = [])
 	{
 		$query = array_merge((array) $this->_next_query, (array) $query);
 
@@ -276,7 +276,7 @@ class Driver_Phantomjs extends Driver {
 			$uri = substr($uri, 0, strpos($uri, '?'));
 		}
 
-		$url = $this->base_url().$uri.($query ? '?'.http_build_query($query) : '');
+		$url = $this->base_url().$uri.(count($query) ? '?'.http_build_query($query) : '');
 
 		$this->connection()->post('url', array('value' => $url));
 	}

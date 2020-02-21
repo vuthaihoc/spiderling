@@ -66,7 +66,7 @@ class Driver_Simple_RequestFactory_HTTP implements Driver_Simple_RequestFactory
 	 * @param  array $post
 	 * @return string
 	 */
-	public function execute($method, $url, array $post = NULL)
+	public function execute($method, $url, array $post = [])
 	{
 		$curl = curl_init($url);
 
@@ -75,7 +75,7 @@ class Driver_Simple_RequestFactory_HTTP implements Driver_Simple_RequestFactory
 		curl_setopt($curl, CURLOPT_CUSTOMREQUEST, $method);
 		curl_setopt($curl, CURLOPT_USERAGENT, $this->user_agent());
 
-		if ($post)
+		if (count($post))
 		{
 			curl_setopt($curl, CURLOPT_POSTFIELDS, $post);
 		}

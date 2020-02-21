@@ -137,8 +137,12 @@ class Driver_Simple extends Driver {
 	 */
 	public function initialize()
 	{
-		@ $this->_dom->loadHTML($this->content());
-		$this->_dom->encoding = 'utf-8';
+	    if(mb_detect_encoding( $this->content() ) == 'UTF-8'){
+            @ $this->_dom->loadHTML("<?xml encoding=\"utf-8\" ?>" . $this->content());
+        }else{
+            @ $this->_dom->loadHTML($this->content());
+            $this->_dom->encoding = 'UTF-8';
+        }
 		$this->_xpath = new Driver_Simple_Xpath($this->_dom);
 		$this->_forms = new Driver_Simple_Forms($this->_xpath);
 	}

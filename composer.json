@@ -1,5 +1,5 @@
 {
-	"name": "vuthaihoc/spiderling",
+	"name": "openbuildings/spiderling",
 	"description": "Crawl the web with kohana, phantomjs or selenium",
 	"license": "BSD-3-Clause",
 	"authors": [
