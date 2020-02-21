@@ -1,8 +1,8 @@
 <?php
 
 namespace Openbuildings\Spiderling;
-use Symfony\Component\CssSelector\CssSelectorConverter;
 
+use Symfony\Component\CssSelector;
 
 /**
  * Locator - converts varios locator formats into xpath
@@ -67,23 +67,23 @@ class Locator {
 				{
 					case 'at':
 						$matches_filter = $this->filter_by_at($item, $index, $value);
-						break;
+					break;
 
 					case 'value':
 						$matches_filter = $this->filter_by_value($item, $index, $value);
-						break;
+					break;
 
 					case 'text':
 						$matches_filter = $this->filter_by_text($item, $index, $value);
-						break;
+					break;
 
 					case 'visible':
 						$matches_filter = $this->filter_by_visible($item, $index, $value);
-						break;
+					break;
 
 					case 'attributes':
 						$matches_filter = $this->filter_by_attributes($item, $index, $value);
-						break;
+					break;
 
 					default:
 						throw new Exception('Filter :filter does not exist', array(':filter' => $filter));
@@ -181,32 +181,31 @@ class Locator {
 	{
 		if ( ! $this->_xpath)
 		{
-			$ccv = new CssSelectorConverter(true);
 			switch ($this->type())
 			{
 				case 'css':
-					$this->_xpath = '//'.$ccv->toXPath($this->selector());
-					break;
+					$this->_xpath = '//'.$this->convert_css_selector_to_xpath($this->selector());
+				break;
 
 				case 'xpath':
 					$this->_xpath = $this->selector();
-					break;
+				break;
 
 				case 'field':
 					$this->_xpath = $this->field_to_xpath($this->selector());
-					break;
+				break;
 
 				case 'label':
 					$this->_xpath = $this->label_to_xpath($this->selector());
-					break;
+				break;
 
 				case 'link':
 					$this->_xpath = $this->link_to_xpath($this->selector());
-					break;
+				break;
 
 				case 'button':
 					$this->_xpath = $this->button_to_xpath($this->selector());
-					break;
+				break;
 
 				default:
 					throw new Exception('Locator type ":type" does not exist', array(':type' => $this->_type));
@@ -330,4 +329,22 @@ class Locator {
 
 		return "Locator: ({$this->type()}) {$this->selector()}".$filters;
 	}
+
+    /**
+     * Convert a CSS selector to XPath.
+     * Uses Symfony CSS Selector 2.8 and above API if possible.
+     * Otherwise fallback to pre-2.8 static interface.
+     *
+     * @param  string $css_selector CSS selector
+     * @return string XPath selector
+     */
+    private function convert_css_selector_to_xpath($css_selector)
+    {
+        if (class_exists('Symfony\Component\CssSelector\CssSelectorConverter')) {
+            $converter = new CssSelector\CssSelectorConverter();
+            return $converter->toXPath($this->selector());
+        }
+
+        return CssSelector\CssSelector::toXPath($this->selector());
+    }
 }
